@@ -137,7 +137,6 @@ Mac OS:
 3. 在上边的工具栏选择 Edit - Preference 进入设置页面，将设置调成如下的样子：
 
 ![atom_settings](img/atom_settings.png)
-
 4. 随便新建一个Python文件就可以开始编码了
 
 <h2 id="3">什么是Python</h2>
