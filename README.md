@@ -232,6 +232,7 @@ os.system("pause")
 接下来我们发现，即使用控制台运行可以避免一闪而过，然而每次运行程序要运行Python解释器，导致
 我们的命令要打`python`几个字，强迫症怎么能忍（摔桌。所以我们要再通过文件注释告诉系统我们的
 程序是用Python解释器运行的，不需要我们再写在命令中：
+
 **以上方法仅适用于Mac和Linux distros，Windows老老实实打字**
 
 ../examples/hello2.py:
