@@ -131,6 +131,7 @@ Mac OS:
 1. 下载安装atom
 2. 打开atom
 3. 在上边的工具栏选择 Edit - Preference 进入设置页面，将设置调成如下的样子：
+
 ![atom_settings](img/atom_settings.png)
 
 4. 随便新建一个Python文件就可以开始编码了
@@ -211,7 +212,7 @@ Debian/Ubuntu/Linux Mint：
 算机输出字符串的速度极快，来不及我们反应，我们就需要让系统在输出之后pause住，于是代码改为
 ：
 
-~/examples/hello1_win.py
+../examples/hello1_win.py:
 
 ```python
 # -*- coding=utf8 -*-
@@ -228,8 +229,9 @@ os.system("pause")
 接下来我们发现，即使用控制台运行可以避免一闪而过，然而每次运行程序要运行Python解释器，导致
 我们的命令要打`python`几个字，强迫症怎么能忍（摔桌。所以我们要再通过文件注释告诉系统我们的
 程序是用Python解释器运行的，不需要我们再写在命令中：
+**以上方法仅适用于Mac和Linux distros，Windows老老实实打字**
 
-~/examples/hello2.py
+../examples/hello2.py:
 
 ```python
 #!/usr/bin/python3
@@ -238,8 +240,40 @@ os.system("pause")
 print("Hello, world!")
 ```
 
+然后我们需要修改文件权限来允许作为可执行文件运行它：
+
+`chmod a+x 你的文件地址`
+
 加上之后我们就可以通过以下命令运行我们的文件了：
 
 `./你的文件地址`
 
+之后我们程序看似非常完美，但是有一个致命的缺陷 -- 如果我们这个文件仅仅是一个大的程序的一部
+分，那么导入这个文件的时候会自动输出 Hello, world! 然而我们并不希望这样。我们希望仅仅在直
+接运行该文件，譬如我们想调试它的功能的时候才自动运行，那么我们就需要把 `print` 语句给封装
+进函数，而不是裸露在外面被直接运行：
 
+../examples/hello3.py:
+
+```python
+#!/usr/bin/python3
+# -*- coding=utf-8 -*-
+
+def main():
+    print("Hello, world!")
+
+if __name__ == "__main__":
+    main()
+
+```
+
+你可能注意到了除了函数定义，下面的`if`语句也让人匪夷所思。在Python中一个文件就是一个模块，
+而一个模块被调用时，它的 `__name__` 会是它的模块名，而它被直接运行的时候，`__name__`的值就
+是`"__main__"`了。通过这个机制我们可以设定该模块的两种不同的行为：
+
+0. 被直接运行时测试功能
+1. 被调用时正常行为
+
+另外这最后一版的代码后面有一个空行，这也是一个很重要的编码习惯。这个 `hello`
+程序基本改善到这里就可以了，当然还可继续，不过再多就是画wo蛇she填nan足shen了
+。
