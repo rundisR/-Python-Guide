@@ -9,6 +9,7 @@
 ........ [2.2 CPython的安装方式 ............ Installation of CPython](#2.2)<br>
 ........ [2.3 适合的编辑器 ...................... A suitable editor](#2.3)<br>
 ........ [2.4 Atom安装+设置 ................... Atom's installation & settings](#2.4)<br>
+........ [2.5 在线IDE ............................... Online IDE](#2.5)<br>
 [3. 什么是Python ................................. Literal meaning of Python](#3)<br>
 [4. 重新理解Hello world ........................Re-understand Hello world](#4)<br>
 [5. Python的编程范式 .......................... Programming convention of Python](#5)<br>
@@ -111,7 +112,7 @@ Mac OS:
 方法一：同Windows<br>
 方法二：如果安装了Homebrew：
 
-`brew install python`
+`brew install python3`
 
 <h3 id="2.3">适合的编辑器</h3>
 现在全年级有两种主流：
@@ -134,10 +135,49 @@ Mac OS:
 0. 进入上面的那个链接
 1. 下载安装atom
 2. 打开atom
-3. 在上边的工具栏选择 Edit - Preference 进入设置页面，将设置调成如下的样子：
-
-![atom_settings](img/atom_settings.png)
+3. 在上边的工具栏选择 Edit - Preference 进入设置页面，将设置调成如下的样子：<br>
+![atom_settings](img/atom_settings.png)<br>
 4. 随便新建一个Python文件就可以开始编码了
+
+p.s.: 这两天看到一个很有意思的atom插件[activate-power-mode](https://atom.io/packages/activate-power-mode)
+具体它的效果是这样的：
+
+![activate-power-mode](img/activate-power-mode.gif)
+
+配合青轴食用更佳（逃
+
+0. Activate-power-mode的安装
+打开atom进入 Edit - Preference，接着在左边的导航栏选择 Install 来安装插件。在搜索框中输入
+activate-power-mode然后点击第一条搜索记录旁边的 `Install` 蓝色按钮来安装。
+
+1. Activate-power-mode的启用
+在atom顶端的菜单栏中找到 Package （倒数第二项），然后在 Package - activate-power-mode 中
+点击 `Toggle` 就可以打开了。
+
+<h3 id="2.5">在线IDE</h3>
+有时候条件有限，或者在阅读本文的时候懒得重新开文件写代码运行再删掉，我在这里再介绍一种运
+行代码的方式 -- 在线IDE。IDE, 全称是Intergrated Developing Environment，是集成了各种功能
+的开发工具，而至于有多少功能要看具体的IDE。整个高中范围内没有使用IDE的必要，所以我这里的
+在线IDE也并没有太多复杂的功能。使用编辑器是一种好的习惯，也是三流程序员之间优越感的来源之
+一（捂脸逃
+
+首先打开[Online IDE](http://www.tutorialspoint.com/execute_python3_online.php)，会进入这
+个界面：
+
+0. Online IDE介绍<br>
+![Demo of Online IDE](img/online_ide.png)<br>
+我们可以看到这个界面分为三部分：左边的文件目录树，右边的编辑器和下面的终端。它的编辑器没
+有atom的好用，但是对于我们的学习来说已经绰绰有余了。下面的终端可以用来运行大部分我们提到
+的命令，譬如运行文件。
+
+1. 试用Online IDE<br>
+现在我们试着运行Online IDE默认帮你写好的Hello World程序。这里我们可以直接点编辑器上方的
+`Execute`按钮。不过我们要善用下面的终端来帮助我们的学习，特别是使用Windows的同学。我们从
+左边的目录树可以看到我们这个Hello World程序写在`main.py`文件中，我们在终端中输入
+
+`python3 main.py`
+
+即可看到运行结果。
 
 <h2 id="3">什么是Python</h2>
 Python是Guido van Rossum开发的一门面向对象的解释型脚本语言。它具备垃圾回收的功能，也就是
@@ -197,19 +237,19 @@ Windows：
 
 按下`Win + R`键，在弹出的窗口输入cmd，按下`Enter`进入Windows命令行终端。在终端中输入
 
-`python 你的文件地址`
+`python3 你的文件地址`
 
 Mac OS X:
 
 按下`f4`键，在某一个文件夹中找到 **终端** 或者 **terminal** 然后进入，接着输入
 
-`python 你的文件地址`
+`python3 你的文件地址`
 
 Debian/Ubuntu/Linux Mint：
 
 按下快捷键 `Ctrl + Alt + T` 打开终端，输入
 
-`python 你的文件地址`
+`python3 你的文件地址`
 
 然后就可以在控制台中看到输出。对于Windows用户，如果强行双击运行的话会导致一闪而过，因为计
 算机输出字符串的速度极快，来不及我们反应，我们就需要让系统在输出之后pause住，于是代码改为
