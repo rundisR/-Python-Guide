@@ -9,3 +9,7 @@
 - Add a sublime plugin for atom [activate-power-mode](https://atom.io/packages/activate-power-mode)
 - Add online IDE introduction
 
+#### 0.0.3 beta
+- Add section 5, 6
+- Add link to example code
+

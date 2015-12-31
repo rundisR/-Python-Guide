@@ -13,9 +13,10 @@
 [3. 什么是Python ................................. Literal meaning of Python](#3)<br>
 [4. 重新理解Hello world ........................Re-understand Hello world](#4)<br>
 [5. Python的编程范式 .......................... Programming convention of Python](#5)<br>
-[6. 控制流 ............................................ Control flow](#6)<br>
+[6. for语句 ............................................ For statement](#6)<br>
 [7. 数据结构 ......................................... Data structure](#7)<br>
 [8. 模块化 ............................................. Moduling programming](#8)<br>
+[9. 函数 ................................................. Function](#9)<br>
 
 ## 公告
 1. 这篇文章如果有Typo可以微信我或者贴issue
@@ -300,7 +301,7 @@ print("Hello, world!")
 接运行该文件，譬如我们想调试它的功能的时候才自动运行，那么我们就需要把 `print` 语句给封装
 进函数，而不是裸露在外面被直接运行：
 
-../examples/hello3.py:
+[../examples/hello3.py](example/hello.py):
 
 ```python
 #!/usr/bin/python3
@@ -324,3 +325,159 @@ if __name__ == "__main__":
 另外这最后一版的代码后面有一个空行，这也是一个很重要的编码习惯。这个 `hello`
 程序基本改善到这里就可以了，当然还可继续，不过再多就是画wo蛇she填nan足shen了
 。
+
+<h2 id="5">Python的编程范式</h2>
+事实上大部分同学编写Python程序的格式都不一样。即使每个人的程序都可以正常运行，但是不可避免
+的是，不统一的标准导致代码格式混乱，影响团队工作以及代码的维护。Python作为一门优雅的语言有
+着能为大多数人接受的编程范式以及代码的格式。前面说过，Python的一个文件就是一个模块，而模块
+的结构和布局也是很重要的。
+
+在这里推荐大家使用以下的结构：
+```Python
+#!/usr/bin/python3              -- 起始行
+
+"""
+This module is used to demonstrate the structure of a Python module.
+                                -- 模块文档（注释）
+"""
+
+import time                     # -- 模块导入
+
+hello = True                    # -- 全局变量定义
+
+def hello():
+    """
+    This function is defined as a demonstration.
+                                -- 函数文档
+    """
+    print("Hello, world!")      # -- 函数体
+
+if __name__ == "__main__":
+    hello()                     # -- 主程序
+```
+另外要注意每行不能超过80个字符，所有的缩进（Tab）都使用4个空格而不是两个。不过不需要手打4
+个空格，一般的Python代码编辑器会自动把Tab扩展成4个空格而不是一个缩进。还有所有的运算符左右
+各加一个空格，括号两边不需要加空格。
+
+另外对于变量、函数以及模块的命名必须是经过考虑的。很多人习惯所有变量按字母表排一遍，a-z。
+然而这是不对的，在之后维护代码的时候就会暴露出需要耗费大量时间来读懂每个变量的含义的缺点。
+变量和函数名应该尽量简短但是可以清楚的表示出它们所代表的数据/行为的含义。
+譬如：
+`get_file_name`就是一个好的函数名，然而`f`并不是，因为不能通过函数名来判断这个函数究竟能做
+什么。变量也是一个道理，胡乱使用abc并不能给代码可读性带来任何优势，然而譬如`filename`则不
+会这样。另外为了避免理解偏差，应该拒绝使用缩写，包括大家熟知的也不可以。另外还应该停止使用
+譬如`password1`, `password2`这样的编号命名，应该使用`input_password`和`right_password`之类
+的代替。
+
+另外命名的时候如果出现多个单词，应使用下划线分隔（安利匈牙利从初学抓起（逃）。
+
+<h2 id="6">for语句</h2>
+对于`if`、`while`等语句，统称控制流语句。它们对条件进行判断并且根据结果改变程序的行为。因
+为比较简单，所以只重点说明`for`语句。
+
+很多人对于`for`语句的认知仅限于可以配合`range`函数计次循环。然而`for`语句在Python中的行为
+更像是*C#中的`foreach`或是Java中的`for ... : ...`*。
+
+事实上Python的`for`语句是用来迭代(iterate)的，而`for a in b`中，b是一个被迭代的迭代器。
+至于迭代器的概念理解为**用于遍历一个容器对象中所有元素的**。
+
+容器对象，如同字面意思一样，这个对象是用来保存多个数据的数据结构。列表就是一个典型的例子
+。而为了遍历一个容器对象中的所有元素，我们需要迭代器。
+
+现在为了帮助理解，先回到对于大家来说最熟悉的用法：计次循环。那么`for i in range(0, 10)`
+究竟做了什么？我们在终端中看看`range`函数究竟返回的是什么：
+```
+>>> a = range(0, 10)
+>>> print(a.__doc__)
+range(stop) -> range object
+range(start, stop[, step]) -> range object
+
+Return an object that produces a sequence of integers from start (inclusive)
+to stop (exclusive) by step.  range(i, j) produces i, i+1, i+2, ..., j-1.
+start defaults to 0, and stop is omitted!  range(4) produces 0, 1, 2, 3.
+These are exactly the valid indices for a list of 4 elements.
+When step is given, it specifies the increment (or decrement).
+```
+
+首先先解释一下，第一行代码我们把`range`函数的返回值赋值给了`a`，然后在第二行打印出了a的
+文档。`__doc__`属性是一个字符串，其中是该对象的文档，也就是之前讲过的在三引号中间的部分
+。以下是示例：
+```python
+>>> def hello():
+...     """demo of __doc__"""
+...     print("Hello, world!")
+...
+>>> hello.__doc__
+'demo of __doc__'
+```
+
+然后回到我们关于`range`函数的探究。文档中提及：
+>Return an object that produces a sequence of integers from start to stop...
+
+由此看来`range`函数的目的是返回一个序列，也就是我们说的容器对象。这点在Python2中更为明显
+：
+```python
+>>> range(0, 10)
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+```
+我们可以看到在Python2中`range`函数返回的更为直接，就是一个列表。虽说在Python3中不再是一
+个列表，但是也是一个序列对象。
+
+知道`range`函数的真面目之后我们再来探讨`for`语句的工作，它是如何遍历这样一个容器元素的。
+刚才我们说过，`for`语句迭代的是一个迭代器，但是`range`函数返回的是一个序列对象而不是迭代
+器啊。所以我们可以看出来，`for`语句还有一个隐藏功能是将容器对象转换为迭代器。那么那些对
+象可以转换为迭代器呢：
+```python
+>>> range(0, 10).__iter__
+<method-wrapper '__iter__' of range object at 0x7f5fd59b4570>
+>>> 1.__iter__
+  File "<stdin>", line 1
+    1.__iter__
+             ^
+SyntaxError: invalid syntax
+```
+
+可以看到在REPL中我们分别提取了`range`函数返回的序列对象的`__iter__`属性和整数1的`__iter_
+_`属性，然而在提取后者的时候发现出现异常，整数1并没有这个属性，这也说明了为什么不能对整数
+1使用`for`语句，因为它并不可以被转换为迭代器。然后我们看一下`__iter__`属性的文档：
+```python
+>>> range(0, 10).__iter__.__doc__
+'Implement iter(self).'
+```
+和`int()`类似，`iter()`函数也是用于转换一个对象的。前者用于将一个对象转换为`int`型的对象
+，而后者则是将一个对象转换为一个迭代器：
+```python
+>>> iter(range(0, 10))
+<range_iterator object at 0x7f5fd59b4540>
+```
+可以看到我们已经获得一个迭代器对象了。现在只需要手动实现迭代它的功能就可以实现`for`语句的
+功能了。我们迭代迭代器使用的是`next`函数，使用它可以返回迭代器的下一个值。如果已经迭代完
+，没有下一个值的话，调用`next`函数会抛出`StopIteration`异常。当这个异常被`for`语句捕获时
+，它便知道已经遍历完所有元素了。因为我们还没讲（也不打算讲）异常处理，所以我们不会捕获它
+，不过不影响我们对`for`语句的理解：
+```python
+>>> iterator = iter(range(0, 10))
+>>> while True:
+...     next(i)
+...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+Traceback (most recent call last):
+  File "<stdin>", line 2, in <module>
+StopIteration
+```
+抛出`StopIteration`异常之后说明已经遍历完成。如果加上异常捕获，这就实现了以下代码：
+```python
+for i in range(0, 10):
+    print(i)
+```
+
+
