@@ -301,7 +301,7 @@ print("Hello, world!")
 接运行该文件，譬如我们想调试它的功能的时候才自动运行，那么我们就需要把 `print` 语句给封装
 进函数，而不是裸露在外面被直接运行：
 
-[../examples/hello3.py](example/hello.py):
+[../examples/hello3.py](/blob/master/examples/hello.py):
 
 ```python
 #!/usr/bin/python3
